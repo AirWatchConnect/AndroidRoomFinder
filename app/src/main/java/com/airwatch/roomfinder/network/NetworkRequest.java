@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 
+import com.airwatch.gateway.clients.AWHttpClient;
 import com.airwatch.roomfinder.locationlist.LocationListModel;
 import com.airwatch.roomfinder.roomslist.RoomDetails;
 import com.airwatch.roomfinder.roomslist.RoomListXmlParser;
@@ -63,9 +64,10 @@ public class NetworkRequest implements INetworkRequest{
         }
 
         String responseBody = "";
-        DefaultHttpClient httpClient = new DefaultHttpClient();
-        httpClient.getAuthSchemes().register(AUTH_TYPE, new NTLMSchemeFactory());
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope(url.getHost(), -1), new NTCredentials(username, password, "", ""));
+        //DefaultHttpClient httpClient = new DefaultHttpClient();
+        //httpClient.getAuthSchemes().register(AUTH_TYPE, new NTLMSchemeFactory());
+        //httpClient.getCredentialsProvider().setCredentials(new AuthScope(url.getHost(), -1), new NTCredentials(username, password, "", ""));
+        DefaultHttpClient httpClient = new AWHttpClient();
         HttpUriRequest httpUriRequest = getHttpUriRequest(method);
         httpUriRequest.setHeader(HTTP.CONTENT_TYPE, "text/xml");
         httpUriRequest.setHeader("Accept", "*/*");
@@ -130,8 +132,8 @@ public class NetworkRequest implements INetworkRequest{
     }
 
     private boolean validateParams(){
-        boolean isUrlValid = Patterns.WEB_URL.matcher(url.toExternalForm()).matches();
-        return isUrlValid && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password);
+        return Patterns.WEB_URL.matcher(url.toExternalForm()).matches();
+        //return isUrlValid && !TextUtils.isEmpty(username) && !TextUtils.isEmpty(password);
     }
 
     enum HTTPMethod{

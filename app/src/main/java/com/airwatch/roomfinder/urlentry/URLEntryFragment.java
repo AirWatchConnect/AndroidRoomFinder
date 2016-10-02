@@ -70,7 +70,9 @@ public class URLEntryFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-            enableUserCredentials(validateURL(s.toString()));
+            //enableUserCredentials(validateURL(s.toString()));
+            //User credentials will be obtained from Anchor app directly
+            enableLoginButton(validateURL(s.toString()));
         }
     };
 
@@ -268,7 +270,8 @@ public class URLEntryFragment extends Fragment {
     private boolean isUserAuthenticated(){
         boolean isAuthenticated = false;
         INetworkRequest networkRequest = ((NetworkRequestFactory)getActivity().getApplicationContext()).getNetworkRequest();
-        networkRequest.setUserCredentials(usernameEntry.getText().toString().trim(), passwordEntry.getText().toString());
+        //User credentials will be obtained from Anchor app directly
+        //networkRequest.setUserCredentials(usernameEntry.getText().toString().trim(), passwordEntry.getText().toString());
         try {
             networkRequest.setUrl(urlEntry.getText().toString().trim());
             String response = networkRequest.requestLocationList();

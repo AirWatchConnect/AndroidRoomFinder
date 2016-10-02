@@ -41,6 +41,8 @@ import com.airwatch.roomfinder.network.NetworkRequest;
 import com.airwatch.roomfinder.network.NetworkRequestFactory;
 import com.airwatch.roomfinder.utils.KeyboardUtils;
 import com.airwatch.roomfinder.utils.NetworkStatus;
+import com.airwatch.sdk.AirWatchSDKException;
+import com.airwatch.sdk.SDKManager;
 
 import java.net.MalformedURLException;
 
@@ -180,6 +182,31 @@ public class URLEntryFragment extends Fragment {
         });
         enableUserCredentials(false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+        getExchangeURLFromCustomSettings();
+    }
+
+    private void getExchangeURLFromCustomSettings(){
+        new AsyncTask<Void, Void, String>(){
+            @Override
+            protected String doInBackground(Void... params) {
+                String url = "";
+                try {
+                    SDKManager sdkManager = SDKManager.init(getActivity().getApplicationContext());
+                    url = sdkManager.getCustomSettings();
+                } catch (AirWatchSDKException e) {
+                    e.printStackTrace();
+                }
+
+                return url;
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                if (!TextUtils.isEmpty(s)){
+                    urlEntry.setText(s);
+                }
+            }
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
     private void showAuthenticationDialog(){

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Roomfinder</string>
+    <string name="vmware_airwatch_room_finder">Airwatch Room Finder</string>
+    <string name="enter_url">Enter URL here</string>
+    <string name="login">Login</string>
+    <string name="location">Locations</string>
+    <string name="ok">Okay</string>
+    <string name="login_failed_msg">Please verify server URL and login credentials</string>
+    <string name="internet_connection_not_available">No internet connectivity</string>
+    <string name="internet_connection_not_available_msg">Please connect to internet and try again</string>
+    <string name="fetching_room_list">Fetching rooms</string>
+    <string name="something_went_wrong">Oops! Something went wrong</string>
+    <string name="error_fetching_rooms">Error fetching rooms. Please try again later.</string>
+    <string name="authenticating">Authenticating</string>
+    <string name="login_failed">Login Failed!</string>
+    <string name="select_a_location">Select a location</string>
+    <string name="rooms">Rooms</string>
+    <string name="enter_password">Enter password here</string>
+    <string name="enter_username">Enter username here</string>
+</resources>

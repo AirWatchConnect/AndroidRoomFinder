@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.airwatch.login.SDKBaseActivity;
 import com.airwatch.roomfinder.locationlist.LocationListFragment;
 import com.airwatch.roomfinder.roomslist.RoomsListFragment;
 import com.airwatch.roomfinder.urlentry.URLEntryFragment;
@@ -23,7 +24,7 @@ import com.airwatch.roomfinder.urlentry.URLEntryFragment;
 /**
  * Created by jmara on 8/11/2016.
  */
-public class MainActivity extends AppCompatActivity implements IAppStateHandler{
+public class MainActivity extends SDKBaseActivity implements IAppStateHandler{
 
     private FragmentManager fragmentManager;
     private AppState appState;

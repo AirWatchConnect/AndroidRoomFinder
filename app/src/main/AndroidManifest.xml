@@ -14,12 +14,38 @@
         android:supportsRtl="true"
         android:name=".RoomFinderApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.airwatch.gateway.ui.GatewaySplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity"/>
+
+        <provider
+            android:name="com.airwatch.storage.PreferencesProvider"
+            android:authorities="com.airwatch.roomfinder.securepreferences"
+            android:exported="false"/>
+
+        <receiver
+            android:name="com.airwatch.sdk.AirWatchSDKBroadcastReceiver"
+            android:permission="com.airwatch.sdk.BROADCAST" >
+            <intent-filter>
+                <action android:name="com.airwatch.roomfinder.airwatchsdk.BROADCAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                <action android:name="android.intent.action.PACKAGE_RESTARTED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".AirWatchSDKIntentService" />
     </application>
 
 </manifest>
